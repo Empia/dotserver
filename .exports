@@ -1,0 +1,17 @@
+export PATH=/usr/local/bin:~/bin:$PATH
+
+export RSPEC=true
+export EDITOR=vim
+export PAGER=less
+export LC_CTYPE=en_US.UTF-8
+
+# Don’t clear the screen after quitting a manual page
+export MANPAGER="less -X"
+
+# Larger bash history (allow 32³ entries; default is 500)
+export HISTSIZE=32768
+export HISTFILESIZE=$HISTSIZE
+export HISTCONTROL=ignoredups
+
+# Make some commands not show up in history
+export HISTIGNORE="ls:ls *:cd:cd -:pwd;exit:date:* --help"

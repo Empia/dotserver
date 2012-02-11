@@ -1,0 +1,25 @@
+# Run rails console
+function sc {
+  if [ -e "script/console" ]
+  then
+    script/console
+  else
+    bundle exec rails c
+  fi
+}
+
+# Create a new directory and enter it
+function md() {
+	mkdir -p "$@" && cd "$@"
+}
+
+# Syntax-highlight JSON strings or files
+function json() {
+	if [ -p /dev/stdin ]; then
+		# piping, e.g. `echo '{"foo":42}' | json`
+		python -mjson.tool | pygmentize -l javascript
+	else
+		# e.g. `json '{"foo":42}'`
+		python -mjson.tool <<< "$*" | pygmentize -l javascript
+	fi
+}
