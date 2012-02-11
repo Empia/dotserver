@@ -63,4 +63,4 @@ function git_dirty {
   fi
 }
 
-PS1="${BRIGHT_GREEN}\w${NORMAL}${BRIGHT_YELLOW} \$(parse_git_branch)${RESET}\$ "
+PS1="${BRIGHT_VIOLET}\u@\h${NORMAL} ${BRIGHT_GREEN}\w${NORMAL}${BRIGHT_YELLOW} \$(parse_git_branch)${RESET}\$ "

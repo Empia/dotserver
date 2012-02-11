@@ -56,10 +56,5 @@ set incsearch                   " incremental searching
 set ignorecase                  " searches are case insensitive...
 set smartcase                   " ... unless they contain at least one capital letter"
 
-"" Load vundle & bundles
-" set rtp+=~/.vim/bundle/vundle/
-" call vundle#rc()
-" Bundle "gmarik/vundle"
-
 " to switch between the currently open buffer and the previous one
 nnoremap <leader><leader> <c-^>
