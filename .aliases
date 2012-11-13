@@ -44,6 +44,7 @@ alias bake='bundle exec rake'
 
 # Rails
 # check sc() function also
+alias r='rails'
 alias auto='bundle exec autotest'
 alias tlog='tail -n 1000 -f log/development.log'
 alias migrate='bundle exec rake db:migrate'

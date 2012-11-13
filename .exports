@@ -1,6 +1,5 @@
 export PATH=/usr/local/bin:~/bin:$PATH
 
-export RSPEC=true
 export EDITOR=vim
 export PAGER=less
 

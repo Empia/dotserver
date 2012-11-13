@@ -16,7 +16,6 @@
     set ttyfast                         " Optimize for fast terminal connections
     set nocursorline
     set guioptions=                     " don't use gui options
-    set guifont=Menlo:h18
     set t_Co=256
     set splitbelow
     set splitright
@@ -87,41 +86,22 @@
         set statusline+=%n:\                 " buffer number
         set statusline+=%t                   " filename with full path
         set statusline+=%m                   " modified flag
-        " set statusline+=\ \
         set statusline+=%{&paste?'[paste]\ ':''}
-        "set statusline+=%{&fileencoding}
         set statusline+=\ \ %Y               " type of file
-        " set statusline+=\ %3.3(%c%):%3.3(%l%)          " column number
-        "set statusline+=\ \%3.3(%l%)     " line / total lines
-        "set statusline+=\ \ %2.3p%%          " percentage through file in lines
-        "set statusline+=\ \ %{FileSize()}
         set statusline+=%<                   " where truncate if line too long
         set statusline+=\ \ %{CurDir()}
 
-
 " Shortcuts
     let mapleader = ","
-
-    " Splits
-
-        " creates empty split
-            nmap <Leader><left>  :leftabove  vnew<CR>
-            nmap <Leader><right> :rightbelow vnew<CR>
-            nmap <Leader><up>    :leftabove  new<CR>
-            nmap <Leader><down>  :rightbelow new<CR>
-
-        " ,w jumps to the next split
-            map <Leader>w <C-w>w
 
     " Open new files relatively
 
         cnoremap %% <c-r>=expand('%:h').'/'<cr>
         map <leader>ew :e %%
-        "map <leader>es :sp %%
         map <leader>ev :vsp %%
         map <leader>et :tabe %%
         " ,n opens a file in the same directory as the current file
-        " map <Leader>n :vnew <C-R>=expand("%:p:h") . '/'<CR>
+        map <Leader>n :vnew <C-R>=expand("%:p:h") . '/'<CR>
 
     " Search stuff
 
@@ -164,22 +144,3 @@
         if exists("&undodir")
           set undodir=~/.vim/undo
         endif
-
-    " Load previous session
-        " load buffers and all
-        " set viminfo='10,\"100,:20,%,n~/.viminfo
-
-        " place cursor on a previous position
-        au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
-
-    " Autoreload .vimrc
-        " http://vimcasts.org/episodes/updating-your-vimrc-file-on-the-fly/
-        if has("autocmd")
-          autocmd! bufwritepost .vimrc source $MYVIMRC
-        endif
-
-    " Auto change the directory to the current file I'm working on
-        " autocmd BufEnter * lcd %:p:h
-
-    " Save on loosing focus
-        " au FocusLost * :wa
