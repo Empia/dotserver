@@ -1,6 +1,6 @@
-    set nocompatible
-    filetype off
-    filetype plugin indent on
+set nocompatible
+filetype off
+filetype plugin indent on
 
 " Interface
     syntax on
@@ -20,7 +20,6 @@
     set splitbelow
     set splitright
     set hidden                          " this allows to edit several files in the same time without having to save them
-    set mouse=a                         " Enable mouse in all modes
     set nostartofline                   " Don’t reset cursor to start of line when moving around.
     set shortmess=atI                   " Don’t show the intro message when starting vim
     set showmode                        " Show the current mode
