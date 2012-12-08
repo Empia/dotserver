@@ -29,11 +29,10 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-" Get rid of the delays
-    set noesckeys
-    set ttimeout
-    set ttimeoutlen=1
-    set timeoutlen=500
+set esckeys
+set ttimeout
+set ttimeoutlen=1
+set timeoutlen=500
 
 " Beeps n errors
     set visualbell " Use visual bell instead of beeping
