@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 cd ~
 if [ -d "dotserver" ]; then
   cd ~/dotserver
@@ -8,4 +8,5 @@ else
   git clone git://github.com/macovsky/dotserver.git
   ./dotserver/install.sh --force
 fi
-exec $SHELL
+
+/bin/bash

@@ -1,10 +1,9 @@
-# Easier navigation: .., ... and -
+# Easier navigation
 alias ..="cd .."
 alias ...="cd ../.."
 alias -- -="cd -"
 
 # Shortcuts
-alias g="git"
 alias v="vim"
 alias mkdir='mkdir -p'
 alias du='du -kh'
@@ -27,13 +26,15 @@ else
 fi
 
 # Git
+alias g="git"
 alias st='git status'
 alias ga='git add -i'
 alias gl='git pull'
 alias gp='git push'
 alias gd='git diff'
+alias gdc='git diff --cached'
 alias gc='git commit -v'
-alias gca='git commit -a -v'
+alias gca='git commit -av'
 alias gco='git checkout'
 alias grm="git status | grep deleted | awk '{print \$3}' | xargs git rm"
 

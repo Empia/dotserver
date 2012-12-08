@@ -1,37 +1,28 @@
 [core]
-  excludesfile = ~/.gitignore
-  attributesfile = ~/.gitattributes
   whitespace = fix,space-before-tab,tab-in-indent,trailing-space
-  editor = /usr/bin/vim
+  editor = vim
 [apply]
   whitespace = fix
 [color]
-  ui = true
-[color "branch"]
-  current = yellow reverse
-  local = yellow
-  remote = green
-[color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old = red bold
-  new = green bold
-[color "status"]
-  added = green
-  changed = yellow
-  untracked = cyan  
+	ui = auto
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	grep = auto
 [branch]
   autosetupmerge = true	
 [merge]
-	log = true
+	summary = true
 [push]
-	# Push current branch even if you've never pushed it before
-	default = current
+	default = tracking
 [alias]
-	merge = merge --no-ff
+  l = pull
+  p = push
+  ap = add -p
+  all = add --all
   st = status
-  ci = commit
+  ci = commit -v
   br = branch
   co = checkout
   df = diff
-  lg = log -p

@@ -1,114 +1,131 @@
 set nocompatible
-filetype off
+filetype on
 filetype plugin indent on
 
-" Interface
-    syntax on
-    set nonumber
-    set encoding=utf-8 nobomb
-    set autoindent
-    set smartindent
-    set wildignore+=*/.git/*,public/system/*,*/log/*,*/tmp/*,.DS_Store,.gitkeep,Gemfile.lock,*.log,*.jpg,*.jpeg,*.gif,*.png,*.pdf
-    set showcmd                         " Show (partial) command in the last line of the screen
-    set showtabline=1
-    set wildmenu                        " Enhance command-line completion
-    set esckeys                         " Allow cursor keys in insert mode
-    set ttyfast                         " Optimize for fast terminal connections
-    set nocursorline
-    set guioptions=                     " don't use gui options
-    set t_Co=256
-    set splitbelow
-    set splitright
-    set hidden                          " this allows to edit several files in the same time without having to save them
-    set nostartofline                   " Don’t reset cursor to start of line when moving around.
-    set shortmess=atI                   " Don’t show the intro message when starting vim
-    set showmode                        " Show the current mode
-    set title                           " Show the filename in the window titlebar
-    set scrolloff=3                     " Start scrolling three lines before the horizontal window border
+syntax on
+set nonumber
+set encoding=utf-8 nobomb
+set autoindent
+set smartindent
+set wildignore+=*~,*/log/*,*/tmp/*,*/.git/objects/*,*/public/system/*,*.jpg,*.jpeg,*.gif,*.png,*.pdf,*.mp3
+set showcmd                         " Show (partial) command in the last line of the screen
+set showtabline=1
+set wildmenu                        " Enhance command-line completion
+set ttyfast                         " Optimize for fast terminal connections
+set nocursorline
+set t_Co=256
+set splitbelow
+set splitright
+set hidden                          " this allows to edit several files in the same time without having to save them
+set nostartofline                   " Don’t reset cursor to start of line when moving around.
+set shortmess=atI                   " Don’t show the intro message when starting vim
+set showmode                        " Show the current mode
+set scrolloff=3                     " Start scrolling three lines before the horizontal window border
+set shell=bash
+set lazyredraw
 
-    " Disable automatic commenting
-        autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+set history=1000
+set nobackup
+set nowritebackup
+set noswapfile
 
-    " Blinks
-        set guicursor=
-        set gcr=n:blinkon0      " don't blink in macvim
+" Get rid of the delays
+    set noesckeys
+    set ttimeout
+    set ttimeoutlen=1
+    set timeoutlen=500
 
-    " Beeps n errors
-        set visualbell " Use visual bell instead of beeping
-        set t_vb=
-        set noerrorbells
+" Beeps n errors
+    set visualbell " Use visual bell instead of beeping
+    set t_vb=
+    set noerrorbells
 
-    " Don’t add empty newlines at the end of files
-        set binary
-        set noeol
+" Don’t add empty newlines at the end of files
+    set binary
+    set noeol
 
-    " Brackets
-        let loaded_matchparen=1         " Don't jump to paired brackets
-        set noshowmatch
+" Brackets
+    let loaded_matchparen=1         " Don't jump to paired brackets
+    set noshowmatch
 
-    " Search
-        set incsearch
-        set hlsearch
-        set ignorecase
-        set smartcase                   " Override the 'ignorecase' if the search pattern contains upper case characters
-        set gdefault
+" Search
+    set incsearch
+    set hlsearch
+    set ignorecase
+    set smartcase                   " Override the 'ignorecase' if the search pattern contains upper case characters
+    set gdefault
 
-        " This turns off Vim’s crazy default regex characters and makes searches use normal regexes.
-        nnoremap / /\v
-        vnoremap / /\v
+    " This turns off Vim’s crazy default regex characters and makes searches use normal regexes.
+    nnoremap / /\v
+    vnoremap / /\v
 
-    " Whitespace
-        set nowrap
-        set tabstop=2 shiftwidth=2 softtabstop=2  " A tab is two spaces
-        set expandtab                             " Use spaces
-        set backspace=indent,eol,start            " Backspace through everything in insert mode
+" Whitespace
+    set nowrap
+    set tabstop=2 shiftwidth=2 softtabstop=2  " A tab is two spaces
+    set expandtab                             " Use spaces
+    set backspace=indent,eol,start            " Backspace through everything in insert mode
 
-    " Statusline
-        function! FileSize()
-            let bytes = getfsize(expand("%:p"))
-            if bytes <= 0
-                return ""
-            endif
-            if bytes < 1024
-                return bytes . "B"
-            else
-                return (bytes / 1024) . "K"
-            endif
-        endfunction
+" Statusline
+    function! FileSize()
+        let bytes = getfsize(expand("%:p"))
+        if bytes <= 0
+            return ""
+        endif
+        if bytes < 1024
+            return bytes . "B"
+        else
+            return (bytes / 1024) . "K"
+        endif
+    endfunction
 
-        function! CurDir()
-            return expand('%:p:~')
-        endfunction
+    function! CurDir()
+        return expand('%:p:~')
+    endfunction
 
-        set laststatus=2
-        set statusline=\
-        set statusline+=%n:\                 " buffer number
-        set statusline+=%t                   " filename with full path
-        set statusline+=%m                   " modified flag
-        set statusline+=%{&paste?'[paste]\ ':''}
-        set statusline+=\ \ %Y               " type of file
-        set statusline+=%<                   " where truncate if line too long
-        set statusline+=\ \ %{CurDir()}
+    set laststatus=2
+    set statusline=\
+    set statusline+=%n:\                 " buffer number
+    set statusline+=%t                   " filename with full path
+    set statusline+=%m                   " modified flag
+    set statusline+=%{&paste?'[paste]\ ':''}
+    set statusline+=\ \ %Y               " type of file
+    set statusline+=%<                   " where truncate if line too long
+    set statusline+=\ \ %{CurDir()}
 
-" Shortcuts
+" Bindings
     let mapleader = ","
 
-    " Open new files relatively
+    " Save & quit
+        map <Leader>w :w!<CR>
+        imap <Leader>w <Esc>:w!<CR>
+        map <Leader>q :q<CR>
+        imap <Leader>q <Esc>:q<CR>
 
+    " Netrw
+        nmap - :Explore<cr>
+
+    " Switch between the currently open buffer and the previous one
+        nnoremap <Leader><Leader> <c-^>
+
+    " Switch windows
+        nmap <C-h> <C-W>h
+        nmap <C-j> <C-W>j
+        nmap <C-k> <C-W>k
+        nmap <C-l> <C-W>l
+
+    " Open new files relatively
         cnoremap %% <c-r>=expand('%:h').'/'<cr>
-        map <leader>ew :e %%
-        map <leader>ev :vsp %%
-        map <leader>et :tabe %%
+
         " ,n opens a file in the same directory as the current file
-        map <Leader>n :vnew <C-R>=expand("%:p:h") . '/'<CR>
+            map <Leader>n :vnew <C-R>=expand("%:p:h") . '/'<CR>
 
     " Search stuff
-
         " <Esc><Esc> clears the search highlight
             nnoremap <silent> <Esc><Esc> :nohlsearch<CR><Esc>
 
         " ,s starts searching
-            nnoremap <leader>s :%s//<left>
+            nnoremap <Leader>s :%s//<left>
+            vnoremap <Leader>s :s//<left>
 
         " keep search results centered
             nmap n nzz
@@ -133,13 +150,3 @@ filetype plugin indent on
 
     " Fix Trailing White Space
         map <leader>ts :%s/\s\+$//e<CR>
-
-" Environment
-    set history=1000 " store lots of :cmdline history
-
-    " Centralize backups, swapfiles and undo history
-        set backupdir=~/.vim/backups
-        set directory=~/.vim/swaps
-        if exists("&undodir")
-          set undodir=~/.vim/undo
-        endif
